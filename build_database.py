@@ -21,7 +21,8 @@ for employee in EMPLOYEES:
     e = Employee(lname=employee.get("lname"),
                  fname=employee.get("fname"),
                  position=employee.get("position"),
-                 computer_name=employee.get("computer_name"))
+                 computer_name=employee.get("computer_name")
+                 )
     db.session.add(e)
 
 db.session.commit()
