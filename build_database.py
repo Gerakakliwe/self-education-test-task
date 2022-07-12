@@ -4,7 +4,7 @@ from models import Employee
 
 # Data to initialize database with
 EMPLOYEES = [
-    {"fname": "Pavel", "lname": "Yemelyanov", "position": "SD2", "computer_name": "p.yemelyanov-desktop"},
+    {"fname": "Pavel", "lname": "Yemelianov", "position": "SD2", "computer_name": "p.yemelianov-desktop"},
     {"fname": "Andrey", "lname": "Samodin", "position": "QA", "computer_name": "a.samodin-desktop"},
     {"fname": "Oleg", "lname": "Fomenko", "position": "SD5", "computer_name": "o.fomenko-desktop"}
 ]
