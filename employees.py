@@ -112,8 +112,8 @@ def update(employee_id, employee):
     ).one_or_none()
 
     # Try to find an existing employee with the same name as the update
-    fname = Employee.get("fname")
-    lname = Employee.get("lname")
+    fname = employee.get("fname")
+    lname = employee.get("lname")
 
     existing_employee = (
         Employee.query.filter(Employee.fname == fname)

@@ -1,0 +1,191 @@
+swagger: "2.0"
+info:
+  description: This is the swagger file that goes with our server code
+  version: "1.0.0"
+  title: Swagger Rest Article
+consumes:
+  - application/json
+produces:
+  - application/json
+
+basePath: /api
+
+# Paths supported by the server application
+paths:
+  /employees:
+    get:
+      operationId: employees.read_all
+      tags:
+        - Employees
+      summary: Read the entire set of employees, sorted by last name
+      description: Read the entire set of employees, sorted by last name
+      responses:
+        200:
+          description: Successfully read employees set operation
+          schema:
+            type: array
+            items:
+              properties:
+                employee_id:
+                  type: string
+                  description: Id of the employee
+                fname:
+                  type: string
+                  description: First name of the employee
+                lname:
+                  type: string
+                  description: Last name of the employee
+                position:
+                  type: string
+                  description: Position of the employee
+                computer_name:
+                  type: string
+                  description: Employee's computer name
+
+    post:
+      operationId: employees.create
+      tags:
+        - Employees
+      summary: Create an employee
+      description: Create a new employee
+      parameters:
+        - name: employee
+          in: body
+          description: Employee to create
+          required: True
+          schema:
+            type: object
+            properties:
+              fname:
+                type: string
+                description: First name of employee to create
+              lname:
+                type: string
+                description: Last name of employee to create
+              position:
+                type: string
+                description: Position of employee to create
+              computer_name:
+                type: string
+                description: Computer name of employee to create
+      responses:
+        201:
+          description: Successfully created employee
+          schema:
+            properties:
+              employee_id:
+                type: string
+                description: Id of the employee
+              fname:
+                type: string
+                description: First name of the employee
+              lname:
+                type: string
+                description: Last name of the employee
+              position:
+                type: string
+                description: Position of the employee
+              computer_name:
+                type: string
+                description: Computer name of the employee
+
+  /employees/{employee_id}:
+    get:
+      operationId: employees.read_one
+      tags:
+        - Employees
+      summary: Read one employee
+      description: Read one employee
+      parameters:
+        - name: employee_id
+          in: path
+          description: Id of the employee to get
+          type: integer
+          required: True
+      responses:
+        200:
+          description: Successfully read employee from employees data operation
+          schema:
+            type: object
+            properties:
+              employee_id:
+                type: string
+                description: Id of the employee
+              fname:
+                type: string
+                description: First name of the employee
+              lname:
+                type: string
+                description: Last name of the employee
+              position:
+                type: string
+                description: Position of the employee
+              computer_name:
+                type: string
+                description: Employee's computer name
+
+    put:
+      operationId: employees.update
+      tags:
+        - Employees
+      summary: Update an employee
+      description: Update an employee
+      parameters:
+        - name: employee_id
+          in: path
+          description: Id the employee to update
+          type: integer
+          required: True
+        - name: employee
+          in: body
+          schema:
+            type: object
+            properties:
+              fname:
+                type: string
+                description: First name of the employee
+              lname:
+                type: string
+                description: Last name of the employee
+              position:
+                type: string
+                description: Position of the employee
+              computer_name:
+                type: string
+                description: Employee's computer name
+      responses:
+        200:
+          description: Successfully updated employee
+          schema:
+            properties:
+              employee_id:
+                type: string
+                description: Id of the employee in the database
+              fname:
+                type: string
+                description: First name of the employee
+              lname:
+                type: string
+                description: Last name of the employee
+              position:
+                type: string
+                description: Position of the employee record
+              computer_name:
+                type: string
+                description: Employee's computer name
+
+    delete:
+      operationId: employees.delete
+      tags:
+        - Employees
+      summary: Delete a employee from the employees list
+      description: Delete a employee
+      parameters:
+        - name: employee_id
+          in: path
+          type: integer
+          description: Id of the employee to delete
+          required: true
+      responses:
+        200:
+          description: Successfully deleted a employee
