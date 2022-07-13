@@ -1,8 +1,8 @@
 swagger: "2.0"
 info:
-  description: This is the swagger file that goes with our server code
+  description: This is the swagger file that goes with my server code
   version: "1.0.0"
-  title: Swagger Rest Article
+  title: Bohdan's test project.
 consumes:
   - application/json
 produces:
@@ -17,11 +17,11 @@ paths:
       operationId: employees.read_all
       tags:
         - Employees
-      summary: Read the entire set of employees, sorted by last name
-      description: Read the entire set of employees, sorted by last name
+      summary: Read all employees from database
+      description: Read all employees from database
       responses:
         200:
-          description: Successfully read employees set operation
+          description: Successfully read employees
           schema:
             type: array
             items:
@@ -58,19 +58,19 @@ paths:
             properties:
               fname:
                 type: string
-                description: First name of employee to create
+                description: First name of the employee
               lname:
                 type: string
-                description: Last name of employee to create
+                description: Last name of the employee
               position:
                 type: string
-                description: Position of employee to create
+                description: Position of the employee
               computer_name:
                 type: string
-                description: Computer name of employee to create
+                description: Employee's computer name
       responses:
         201:
-          description: Successfully created employee
+          description: Successfully created an employee
           schema:
             properties:
               employee_id:
@@ -87,7 +87,7 @@ paths:
                 description: Position of the employee
               computer_name:
                 type: string
-                description: Computer name of the employee
+                description: Employee's computer name
 
   /employees/{employee_id}:
     get:
@@ -104,7 +104,7 @@ paths:
           required: True
       responses:
         200:
-          description: Successfully read employee from employees data operation
+          description: Successfully read an employee from employees database
           schema:
             type: object
             properties:
@@ -155,12 +155,12 @@ paths:
                 description: Employee's computer name
       responses:
         200:
-          description: Successfully updated employee
+          description: Successfully updated an employee
           schema:
             properties:
               employee_id:
                 type: string
-                description: Id of the employee in the database
+                description: Id of the employee
               fname:
                 type: string
                 description: First name of the employee
@@ -169,7 +169,7 @@ paths:
                 description: Last name of the employee
               position:
                 type: string
-                description: Position of the employee record
+                description: Position of the employee
               computer_name:
                 type: string
                 description: Employee's computer name
@@ -178,8 +178,8 @@ paths:
       operationId: employees.delete
       tags:
         - Employees
-      summary: Delete a employee from the employees list
-      description: Delete a employee
+      summary: Delete an employee from the database
+      description: Delete an employee from the database
       parameters:
         - name: employee_id
           in: path
@@ -188,4 +188,4 @@ paths:
           required: true
       responses:
         200:
-          description: Successfully deleted a employee
+          description: Successfully deleted an employee

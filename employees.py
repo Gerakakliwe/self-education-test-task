@@ -129,7 +129,7 @@ def update(employee_id, employee):
 
     # Would our update create a duplicate of another employee
     elif (
-            existing_employee is not None and existing_employee.employee.id != employee_id
+            existing_employee is not None and existing_employee.employee_id != employee_id
     ):
         abort(
             409,
