@@ -3,8 +3,8 @@ This is the employees module that supports all the REST actions for the employee
 """
 from config import db
 from flask import (
-    make_response,
-    abort
+    abort,
+    make_response
 )
 from models import (
     Employee,
@@ -20,7 +20,7 @@ def read_all():
     :return:    json string of list of employees
     """
     # Create the list of employees from our database
-    employees = Employee.query.order_by(Employee.lname).all()
+    employees = Employee.query.order_by(Employee.employee_id).all()
 
     # Serialize the data for the response
     employees_schema = EmployeeSchema(many=True)

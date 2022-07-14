@@ -1,9 +1,6 @@
-"""
-Main server file
-"""
 # Import modules
-from flask import render_template
 import config
+from flask import render_template
 
 # Get the application instance
 connex_app = config.connex_app

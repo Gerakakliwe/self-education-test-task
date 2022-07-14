@@ -1,4 +1,7 @@
-from config import db, ma
+from config import (
+    db,
+    ma
+)
 
 
 class Employee(db.Model):
