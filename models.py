@@ -4,6 +4,7 @@ from config import (
 )
 
 
+# Employee model
 class Employee(db.Model):
     __tablename__ = "employee"
     employee_id = db.Column(db.Integer, primary_key=True)
@@ -13,6 +14,7 @@ class Employee(db.Model):
     computer_name = db.Column(db.String(32))
 
 
+# Employee schema to serialize data
 class EmployeeSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = Employee

@@ -50,7 +50,7 @@ def read_one(employee_id):
     else:
         abort(
             404,
-            f"Employee with id {employee_id} was not found"
+            f"Employee with ID {employee_id} was not found"
         )
 
 
@@ -90,7 +90,7 @@ def create(employee):
 
         return data, 201
 
-    # Otherwise - no, employee already exists
+    # Otherwise - no, employee already exists, throw an abort
     else:
         abort(
             406,
@@ -107,9 +107,7 @@ def update(employee_id, employee):
     :param employee:      employee to update
     :return:              updated employee
     """
-    update_employee = Employee.query.filter(
-        Employee.employee_id == employee_id
-    ).one_or_none()
+    update_employee = Employee.query.filter(Employee.employee_id == employee_id).one_or_none()
 
     # Try to find an existing employee with the same name as the update
     fname = employee.get("fname")
@@ -141,13 +139,13 @@ def update(employee_id, employee):
 
         # convert passed value into a db object
         schema = EmployeeSchema()
-        update = schema.load(employee, session=db.session)
+        update_info = schema.load(employee, session=db.session)
 
         # Set the ID to the employee we want to update
-        update.employee_id = update_employee.employee_id
+        update_info.employee_id = update_employee.employee_id
 
         # Merge the mew object into the old and commit it to the database
-        db.session.merge(update)
+        db.session.merge(update_info)
         db.session.commit()
 
         # Return updated employee in the response
