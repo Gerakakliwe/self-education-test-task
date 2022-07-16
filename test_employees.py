@@ -53,12 +53,12 @@ class TestEmployeeRead(unittest.TestCase):
 
 # Tests for create functions
 class TestEmployeeCreate(unittest.TestCase):
-    def test_create_should_succeed(self):
+    def test_create_nonexistent_should_succeed(self):
         result = create(EMPLOYEE_TO_CREATE)
         self.assertEqual(result, (EMPLOYEE_TO_CREATE, 201))
 
     @patch('employees.abort')
-    def test_create_existed_should_fail(self, abort_mock):
+    def test_create_that_exist_should_fail(self, abort_mock):
         create(EMPLOYEE_TO_CREATE)
         abort_mock.assert_called_once_with(406,
                                            f"Employee {EMPLOYEE_TO_CREATE.get('fname')}, "
@@ -67,7 +67,7 @@ class TestEmployeeCreate(unittest.TestCase):
 
 # Tests for update functions
 class TestEmployeeUpdate(unittest.TestCase):
-    def test_update_should_succeed(self):
+    def test_update_employee_found_should_succeed(self):
         id_to_update = 1
         result = update(id_to_update, EMPLOYEE_TO_UPDATE)
         self.assertEqual(result, (EMPLOYEE_TO_UPDATE, 200))
@@ -79,8 +79,8 @@ class TestEmployeeUpdate(unittest.TestCase):
         abort_mock.assert_called_once_with(404, f"Employee with ID {id_to_update} was not found")
 
     @patch('employees.abort')
-    def test_update_employee_name_exists_should_fail(self, abort_mock):
-        id_to_update = 4
+    def test_update_employee_whose_name_exists_should_fail(self, abort_mock):
+        id_to_update = 3
         update(id_to_update, EMPLOYEE_TO_UPDATE)
         abort_mock.assert_called_once_with(409,
                                            f"Employee {EMPLOYEE_TO_UPDATE.get('fname')}, "
